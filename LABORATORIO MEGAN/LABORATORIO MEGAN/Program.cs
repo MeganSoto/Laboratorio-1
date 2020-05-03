@@ -49,7 +49,7 @@ namespace LABORATORIO_MEGAN
 
                 while (o == 0)
                 {
-                    lectura = File.OpenText("ArUsuarios.txt");
+                    lectura = File.OpenText("Usuarios.txt");
 
                     Console.WriteLine("Inserte usuario: ");
                     user = (Console.ReadLine());
@@ -103,6 +103,7 @@ namespace LABORATORIO_MEGAN
                     lectura.Close();
                 }
             }
+            
 
         }
         class trabajador
@@ -150,7 +151,7 @@ namespace LABORATORIO_MEGAN
 
                 while (o == 0)
                 {
-                    Console.WriteLine("1.Crear Usuario   \n2.Ver inventario\n4.Ver Facturas\n5.Cerrar Sesión");
+                    Console.WriteLine("1.Crear Usuario   \n2.Ver inventario\n3.Ver usuarios registrados\n4.Ver facturas\n5.Cerrar sesión");
                     per = int.Parse(Console.ReadLine());
                     if (per == 1)
                     {
@@ -164,7 +165,7 @@ namespace LABORATORIO_MEGAN
 
                         Console.Clear();
                         TextReader leer;
-                        leer = new StreamReader("ArInventario.txt");
+                        leer = new StreamReader("Inventario.txt");
                         Console.WriteLine(leer.ReadToEnd());
                         leer.Close();
 
@@ -172,6 +173,25 @@ namespace LABORATORIO_MEGAN
                         ado.admin();
 
 
+                    }
+                    if (per == 3)
+                    {
+                        o = 1;
+                        Console.Clear();
+                        TextReader leer;
+                        leer = new StreamReader("Usuarios.txt");
+                        Console.WriteLine(leer.ReadToEnd());
+                        leer.Close();
+
+                        tit.mecorp();
+                        ado.admin();
+
+
+                    }
+                    if (per == 4)
+                    {
+                        o = 1;
+                       
                     }
                     if (per == 5)
                     {
@@ -190,7 +210,7 @@ namespace LABORATORIO_MEGAN
                 Console.Clear();
                 tit.mecorp();
                 Console.WriteLine();
-                StreamWriter Escribir = File.AppendText("ArUsuarios.txt");
+                StreamWriter Escribir = File.AppendText("Usuarios.txt");
                 string nombre;
                 string contraseña;
                 string opcion;
@@ -250,7 +270,7 @@ namespace LABORATORIO_MEGAN
                 Console.Clear();
                 tit.mecorp();
                 Console.WriteLine();
-                StreamWriter Escribir = File.AppendText("ArInventario.txt");
+                StreamWriter Escribir = File.AppendText("Inventario.txt");
                 string producto;
                 string precio;
                 string cantidad;
