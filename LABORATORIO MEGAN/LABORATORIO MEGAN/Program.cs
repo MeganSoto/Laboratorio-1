@@ -12,18 +12,20 @@ namespace LABORATORIO_MEGAN
         static void Main(string[] args)
         {
             inicio ini = new inicio();
+            ini.usuario();
+
             titulo tit = new titulo();
 
-            tit.mecorp();
-            ini.usuario();
+            
+           
 
             Console.ReadKey();
         }
         class titulo
         {
-            public void mecorp()
+            public void tit()
             {
-                Console.WriteLine("Tienda Patos");
+                Console.WriteLine("EMPRESA LOS PATOS");
             }
         }
 
@@ -36,25 +38,26 @@ namespace LABORATORIO_MEGAN
                 trabajador tra = new trabajador();
                 creacion cre = new creacion();
                 Console.Clear();
-                tit.mecorp();
+                tit.tit();
 
                 StreamReader lectura;
                 string user, contraseña, seguir;
                 bool resultado;
                 resultado = false;
                 string[] información = new string[2];
-                char[] separador = { '-' };
-                int o = 0;
                 string adm = "administrador";
+                char[] separador = { ',' };
+                int o = 0;
+              
 
                 while (o == 0)
                 {
-                    lectura = File.OpenText("Usuarios.txt");
-
+                  
                     Console.WriteLine("Inserte usuario: ");
                     user = (Console.ReadLine());
                     Console.WriteLine("Inserte su contraseña: ");
                     contraseña = (Console.ReadLine());
+                    lectura = File.OpenText("Usuarios.txt");
 
                     seguir = lectura.ReadLine();
 
@@ -67,20 +70,21 @@ namespace LABORATORIO_MEGAN
                             if (información[2].Trim().Equals(adm))
                             {
                                 Console.Clear();
-                                tit.mecorp();
-
-                                Console.Write("Acaba de ingresar en la página de: " + información[0].Trim());
-                                Console.WriteLine("(administrador)");
+                               
+                                Console.Write("Acaba de ingresar en la página del administrador:  " + información[0].Trim());
+                                Console.WriteLine();
+                                Console.WriteLine("¿Qué desea realizar?  ");
+                                Console.WriteLine();
                                 lectura.Close();
                                 admin.admin();
                             }
                             else
                             {
                                 Console.Clear();
-                                tit.mecorp();
-
-                                Console.Write("Acaba de ingresar en la página de: " + información[0].Trim());
-                                Console.WriteLine("(trabajador)");
+                                Console.Write("Acaba de ingresar en la página del trabajador:  " + información[0].Trim());
+                                Console.WriteLine();
+                                Console.WriteLine("¿Qué desea realizar?  ");
+                                Console.WriteLine();
                                 lectura.Close();
                                 tra.tra();
                             }
@@ -96,8 +100,8 @@ namespace LABORATORIO_MEGAN
                     if (resultado == false)
                     {
                         Console.Clear();
-                        tit.mecorp();
-                        Console.WriteLine("No se encuentra el User");
+                        
+                        Console.WriteLine("No se encuentra el Usuario");
                         o = 0;
                     }
                     lectura.Close();
@@ -105,6 +109,59 @@ namespace LABORATORIO_MEGAN
             }
             
 
+        }
+        class creacion
+        {
+            public void agregar()
+            {
+                titulo tit = new titulo();
+                administrador ado = new administrador();
+                Console.Clear();
+                Console.WriteLine();
+                StreamWriter Escribir = File.AppendText("Usuarios.txt");
+                string nombre, contraseña, opcion;
+
+                int cargo;
+                int o = 0;
+                while (o == 0)
+                {
+                    Console.WriteLine("El usuario será : \n1.Administrador \n2.Trabajador ");
+                    cargo = int.Parse(Console.ReadLine());
+                    Console.WriteLine();
+                    Console.WriteLine("Usuario: ");
+                    nombre = Console.ReadLine();
+
+                    Console.WriteLine("Contraseña: ");
+                    contraseña = Console.ReadLine();
+                    contraseña = ("---" + contraseña);
+
+                    if (cargo == 1)
+                    {
+                        opcion = "Administrador";
+                        opcion = ("---" + opcion);
+
+                        Console.WriteLine();
+                        Escribir.WriteLine(nombre + contraseña + opcion);
+                        Escribir.Close();
+                        o = 1;
+                    }
+                    if (cargo == 2)
+                    {
+                        opcion = "Trabajador";
+                        opcion = ("---" + opcion);
+
+                        Console.WriteLine();
+                        Escribir.WriteLine(nombre + contraseña + opcion);
+                        Escribir.Close();
+                        o = 1;
+                    }
+                    Escribir.Close();
+
+                }
+                Console.Clear();
+                Console.WriteLine("Ha creado un usuario nuevo");
+                ado.admin();
+            }
         }
         class trabajador
         {
@@ -134,7 +191,7 @@ namespace LABORATORIO_MEGAN
                 }
             }
         }
-
+       
         class administrador
         {
             public void admin()
@@ -169,7 +226,7 @@ namespace LABORATORIO_MEGAN
                         Console.WriteLine(leer.ReadToEnd());
                         leer.Close();
 
-                        tit.mecorp();
+                        
                         ado.admin();
 
 
@@ -183,7 +240,7 @@ namespace LABORATORIO_MEGAN
                         Console.WriteLine(leer.ReadToEnd());
                         leer.Close();
 
-                        tit.mecorp();
+                       
                         ado.admin();
 
 
@@ -201,63 +258,7 @@ namespace LABORATORIO_MEGAN
                 }
             }
         }
-        class creacion
-        {
-            public void agregar()
-            {
-                titulo tit = new titulo();
-                administrador ado = new administrador();
-                Console.Clear();
-                tit.mecorp();
-                Console.WriteLine();
-                StreamWriter Escribir = File.AppendText("Usuarios.txt");
-                string nombre;
-                string contraseña;
-                string opcion;
-                int cargo;
-                int o = 0;
-                while (o == 0)
-                {
-                    Console.WriteLine("El usuario será : \n1.Administrador \n2.Trabajador ");
-                    cargo = int.Parse(Console.ReadLine());
-                    Console.WriteLine();
-                    Console.WriteLine("Usuario: ");
-                    nombre = Console.ReadLine();
-
-                    Console.WriteLine("Contraseña: ");
-                    contraseña = Console.ReadLine();
-                    contraseña = ("-" + contraseña);
-
-                    if (cargo == 1)
-                    {
-                        opcion = "Administrador";
-                        opcion = ("-" + opcion);
-
-                        Console.WriteLine();
-                        Escribir.WriteLine(nombre + contraseña + opcion);
-                        Escribir.Close();
-                        o = 1;
-                    }
-                    if (cargo == 2)
-                    {
-                        opcion = "Trabajador";
-                        opcion = ("-" + opcion);
-
-                        Console.WriteLine();
-                        Escribir.WriteLine(nombre + contraseña + opcion);
-                        Escribir.Close();
-                        o = 1;
-                    }
-                    Escribir.Close();
-
-                }
-                Console.Clear();
-                tit.mecorp();
-
-                Console.WriteLine("Ha creado un usuario nuevo");
-                ado.admin();
-            }
-        }
+        
         class creacioninventario
         {
             public void inventario()
@@ -268,12 +269,10 @@ namespace LABORATORIO_MEGAN
                 creacioninventario crei = new creacioninventario();
 
                 Console.Clear();
-                tit.mecorp();
                 Console.WriteLine();
                 StreamWriter Escribir = File.AppendText("Inventario.txt");
-                string producto;
-                string precio;
-                string cantidad;
+                string producto, precio, cantidad;
+               
 
                 char menu = 's';
 
@@ -297,7 +296,7 @@ namespace LABORATORIO_MEGAN
                 }
                 Escribir.Close();
                 Console.Clear();
-                tit.mecorp();
+              
 
                 tra.tra();
 
