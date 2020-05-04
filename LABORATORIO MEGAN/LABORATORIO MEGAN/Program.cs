@@ -45,7 +45,7 @@ namespace LABORATORIO_MEGAN
                 bool resultado;
                 resultado = false;
                 string[] información = new string[2];
-                string adm = "administrador";
+                string traba = "trabajador";
                 char[] separador = { ',' };
                 int o = 0;
               
@@ -67,26 +67,26 @@ namespace LABORATORIO_MEGAN
 
                         if (información[0].Trim().Equals(user) && información[1].Trim().Equals(contraseña))
                         {
-                            if (información[2].Trim().Equals(adm))
+                            if (información[2].Trim().Equals(traba))
                             {
+
                                 Console.Clear();
-                               
-                                Console.Write("Acaba de ingresar en la página del administrador:  " + información[0].Trim());
-                                Console.WriteLine();
-                                Console.WriteLine("¿Qué desea realizar?  ");
-                                Console.WriteLine();
-                                lectura.Close();
-                                admin.admin();
-                            }
-                            else
-                            {
-                                Console.Clear();
-                                Console.Write("Acaba de ingresar en la página del trabajador:  " + información[0].Trim());
+                                Console.Write("Acaba de ingresar en la página del trabajador");
                                 Console.WriteLine();
                                 Console.WriteLine("¿Qué desea realizar?  ");
                                 Console.WriteLine();
                                 lectura.Close();
                                 tra.tra();
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.Write("Acaba de ingresar en la página del administrador" );
+                                Console.WriteLine();
+                                Console.WriteLine("¿Qué desea realizar?  ");
+                                Console.WriteLine();
+                                lectura.Close();
+                                admin.admin();
                             }
                             o = 1;
                             resultado = true;
@@ -145,7 +145,7 @@ namespace LABORATORIO_MEGAN
                         Escribir.Close();
                         o = 1;
                     }
-                    if (cargo == 2)
+                    if  (cargo == 2)
                     {
                         opcion = "Trabajador";
                         opcion = ("---" + opcion);
@@ -160,6 +160,8 @@ namespace LABORATORIO_MEGAN
                 }
                 Console.Clear();
                 Console.WriteLine("Ha creado un usuario nuevo");
+                Console.WriteLine();
+                Console.WriteLine("¿Qué más desea realizar?");
                 ado.admin();
             }
         }
@@ -169,7 +171,7 @@ namespace LABORATORIO_MEGAN
             {
                 inicio ini = new inicio();
                 titulo tit = new titulo();
-                creacioninventario crei = new creacioninventario();
+                
                 int per;
                 int o = 0;
 
@@ -180,9 +182,47 @@ namespace LABORATORIO_MEGAN
                     if (per == 1)
                     {
                         o = 1;
-                        crei.inventario();
+                        administrador ado = new administrador();
+                        trabajador tra = new trabajador();
+
+                        Console.Clear();
+
+                        Console.WriteLine();
+                        StreamWriter Escribir = File.AppendText("Inventario.txt");
+                        string producto;
+                        string precio;
+                        string cantidad;
+
+                        char menu = 's';
+
+                        while (menu != 'n')
+                        {
+
+                            Console.WriteLine("producto: ");
+                            producto = Console.ReadLine();
+
+                            Console.WriteLine("Precio: ");
+                            precio = Console.ReadLine();
+                            precio = ("-" + precio);
+
+                            Console.WriteLine("cantidad: ");
+                            cantidad = Console.ReadLine();
+                            cantidad = ("-" + cantidad);
+                            Console.WriteLine("¿Desea agregar otro producto?[s/n]");
+                            menu = char.Parse(Console.ReadLine());
+
+                            Escribir.WriteLine(producto + precio + cantidad);
+                        }
+                        Escribir.Close();
+                        Console.Clear();
+                   
+
+                        tra.tra();
+
+
 
                     }
+                
                     if (per == 3)
                     {
                         o = 1;
@@ -201,8 +241,7 @@ namespace LABORATORIO_MEGAN
                 titulo tit = new titulo();
                 administrador ado = new administrador();
                 creacion cre = new creacion();
-                creacioninventario crei = new creacioninventario();
-
+               
                 int per;
                 int o = 0;
 
@@ -259,51 +298,7 @@ namespace LABORATORIO_MEGAN
             }
         }
         
-        class creacioninventario
-        {
-            public void inventario()
-            {
-                titulo tit = new titulo();
-                administrador ado = new administrador();
-                trabajador tra = new trabajador();
-                creacioninventario crei = new creacioninventario();
-
-                Console.Clear();
-                Console.WriteLine();
-                StreamWriter Escribir = File.AppendText("Inventario.txt");
-                string producto, precio, cantidad;
-               
-
-                char menu = 's';
-
-                while (menu != 'n')
-                {
-
-                    Console.WriteLine("producto: ");
-                    producto = Console.ReadLine();
-
-                    Console.WriteLine("Precio: ");
-                    precio = Console.ReadLine();
-                    precio = ("-" + precio);
-
-                    Console.WriteLine("cantidad: ");
-                    cantidad = Console.ReadLine();
-                    cantidad = ("-" + cantidad);
-                    Console.WriteLine("¿Desea agregar otro producto?[s/n]");
-                    menu = char.Parse(Console.ReadLine());
-
-                    Escribir.WriteLine(producto + precio + cantidad);
-                }
-                Escribir.Close();
-                Console.Clear();
-              
-
-                tra.tra();
-
-
-            }
-        }
-
+       
 
     }
 
