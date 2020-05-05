@@ -222,7 +222,70 @@ namespace LABORATORIO_MEGAN
 
 
                     }
-                
+                    if (per == 2)
+                    {
+                        o = 1;
+                        administrador ado = new administrador();
+                        trabajador tra = new trabajador();
+
+                        Console.Clear();
+
+                        Console.WriteLine();
+                        StreamWriter Escribir = File.AppendText("Factura.txt");
+                        string correlativo;
+                        string cliente;
+                        string nit;
+                        string fecha;
+                        string detalle;
+                        string precio;
+                        string total;
+
+                        char menu = 's';
+
+                        while (menu != 'n')
+                        {
+
+
+                            Console.WriteLine("Nombre del cliente: ");
+                            cliente = Console.ReadLine();
+                            cliente = ("-" + cliente);
+
+                            Console.WriteLine("Nit: ");
+                           nit = Console.ReadLine();
+                            nit= ("-" + nit);
+
+                            Console.WriteLine("Fecha: ");
+                            fecha = Console.ReadLine();
+                            fecha = ("-" + fecha);
+
+                            Console.WriteLine("Detalle de la compra: ");
+                            detalle = Console.ReadLine();
+                            detalle = ("-" + detalle);
+
+                            Console.WriteLine("Precio: ");
+                            precio = Console.ReadLine();
+                            precio = ("-" + precio);
+
+
+                            Console.WriteLine("Monto total a pagar: ");
+                            total = Console.ReadLine();
+                            total = ("-" + total);
+
+
+                            Console.WriteLine("¿Desea agregar otro producto?[s/n]");
+                            menu = char.Parse(Console.ReadLine());
+
+                            Escribir.WriteLine(cliente+nit+fecha+detalle+total);
+                        }
+                        Escribir.Close();
+                        Console.Clear();
+
+                        tra.tra();
+
+
+
+                    }
+
                     if (per == 3)
                     {
                         o = 1;
@@ -265,7 +328,7 @@ namespace LABORATORIO_MEGAN
                         Console.WriteLine(leer.ReadToEnd());
                         leer.Close();
 
-                        
+
                         ado.admin();
 
 
@@ -287,7 +350,13 @@ namespace LABORATORIO_MEGAN
                     if (per == 4)
                     {
                         o = 1;
-                       
+                        Console.Clear();
+                        TextReader leer;
+                        leer = new StreamReader("Factura.txt");
+                        Console.WriteLine(leer.ReadToEnd());
+                        leer.Close();
+                        ado.admin();
+
                     }
                     if (per == 5)
                     {
