@@ -244,7 +244,9 @@ namespace LABORATORIO_MEGAN
 
                         while (menu != 'n')
                         {
-
+                            Console.WriteLine("Correlativo: ");
+                            correlativo= Console.ReadLine();
+                            correlativo= ("-" + correlativo);
 
                             Console.WriteLine("Nombre del cliente: ");
                             cliente = Console.ReadLine();
