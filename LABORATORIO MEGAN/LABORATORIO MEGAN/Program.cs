@@ -246,7 +246,7 @@ namespace LABORATORIO_MEGAN
                         {
                             Console.WriteLine("Correlativo: ");
                             correlativo= Console.ReadLine();
-                            correlativo= ("-" + correlativo);
+                          
 
                             Console.WriteLine("Nombre del cliente: ");
                             cliente = Console.ReadLine();
@@ -277,7 +277,7 @@ namespace LABORATORIO_MEGAN
                             Console.WriteLine("¿Desea agregar otro producto?[s/n]");
                             menu = char.Parse(Console.ReadLine());
 
-                            Escribir.WriteLine(cliente+nit+fecha+detalle+total);
+                            Escribir.WriteLine(correlativo+cliente+nit+fecha+detalle+total);
                         }
                         Escribir.Close();
                         Console.Clear();
