@@ -272,17 +272,18 @@ namespace LABORATORIO_MEGAN
 
                             Console.WriteLine("Precio: ");
                             precio = double.Parse(Console.ReadLine());
-                            precio = double.Parse(("-" + precio));
+                            precio = double.Parse(("-" + precio ));
 
                           
 
 
                             subtotal = cantidad * precio;
-                           
+                            subtotal = double.Parse(("-" + subtotal));
+
                             total = total + subtotal;
                            
                             
-                            Console.WriteLine("El total es de: " + total );
+                            Console.WriteLine("El total es de: " +total );
 
                             Console.WriteLine("¿Desea agregar otro producto?[s/n]");
                             menu = char.Parse(Console.ReadLine());
