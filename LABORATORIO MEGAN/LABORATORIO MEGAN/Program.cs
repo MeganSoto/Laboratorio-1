@@ -125,7 +125,7 @@ namespace LABORATORIO_MEGAN
                 int o = 0;
                 while (o == 0)
                 {
-                    Console.WriteLine("El usuario será : \n1.Administrador \n2.Trabajador ");
+                    Console.WriteLine("El usuario será : \n1.administrador \n2.trabajador ");
                     cargo = int.Parse(Console.ReadLine());
                     Console.WriteLine();
                     Console.WriteLine("Usuario: ");
@@ -133,12 +133,12 @@ namespace LABORATORIO_MEGAN
 
                     Console.WriteLine("Contraseña: ");
                     contraseña = Console.ReadLine();
-                    contraseña = ("---" + contraseña);
+                    contraseña = ("," + contraseña);
 
                     if (cargo == 1)
                     {
-                        opcion = "Administrador";
-                        opcion = ("---" + opcion);
+                        opcion = "administrador";
+                        opcion = ("," + opcion);
 
                         Console.WriteLine();
                         Escribir.WriteLine(nombre + contraseña + opcion);
@@ -147,8 +147,8 @@ namespace LABORATORIO_MEGAN
                     }
                     if  (cargo == 2)
                     {
-                        opcion = "Trabajador";
-                        opcion = ("---" + opcion);
+                        opcion = "trabajador";
+                        opcion = ("," + opcion);
 
                         Console.WriteLine();
                         Escribir.WriteLine(nombre + contraseña + opcion);
@@ -237,8 +237,10 @@ namespace LABORATORIO_MEGAN
                         string nit;
                         string fecha;
                         string detalle;
-                        string precio;
-                        string total;
+                        int cantidad;
+                        double precio;
+                        double subtotal, total;
+                        total = 0;
 
                         char menu = 's';
 
@@ -260,25 +262,34 @@ namespace LABORATORIO_MEGAN
                             fecha = Console.ReadLine();
                             fecha = ("-" + fecha);
 
-                            Console.WriteLine("Detalle de la compra: ");
+                            Console.WriteLine("Producto: ");
                             detalle = Console.ReadLine();
                             detalle = ("-" + detalle);
 
+                            Console.WriteLine("Cantidad de productos: ");
+                            cantidad = int.Parse(Console.ReadLine());
+                            cantidad = int.Parse(("-" + cantidad));
+
                             Console.WriteLine("Precio: ");
-                            precio = Console.ReadLine();
-                            precio = ("-" + precio);
+                            precio = double.Parse(Console.ReadLine());
+                            precio = double.Parse(("-" + precio));
+
+                          
 
 
-                            Console.WriteLine("Monto total a pagar: ");
-                            total = Console.ReadLine();
-                            total = ("-" + total);
-
+                            subtotal = cantidad * precio;
+                           
+                            total = total + subtotal;
+                           
+                            
+                            Console.WriteLine("El total es de: " + total );
 
                             Console.WriteLine("¿Desea agregar otro producto?[s/n]");
                             menu = char.Parse(Console.ReadLine());
 
-                            Escribir.WriteLine(correlativo+cliente+nit+fecha+detalle+total);
+                            Escribir.WriteLine(correlativo+cliente+nit+fecha+detalle+cantidad+precio+subtotal);
                         }
+               
                         Escribir.Close();
                         Console.Clear();
 
